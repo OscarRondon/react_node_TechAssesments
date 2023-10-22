@@ -30,7 +30,11 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/method-signature-style': 'off',
     'no-multiple-empty-lines': 'off',
-    'padded-blocks': 'off'
+    'padded-blocks': 'off',
+    "@typescript-eslint/triple-slash-reference": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/no-non-null-assertion": "off"
   },
   settings: { react: { version: 'detect' } },
 }

@@ -1,34 +1,16 @@
-import { useState } from 'react'
-
 import './App.css'
-
-interface ListItem {
-  id: string
-  timestamp: number
-  text: string
-
-}
-
-const INITIAL_ITEMS: ListItem[] = [
-  {
-    id: crypto.randomUUID(),
-    timestamp: Date.now(),
-    text: 'Item 1'
-  },
-  {
-    id: crypto.randomUUID(),
-    timestamp: Date.now(),
-    text: 'Item 2'
-  },
-  {
-    id: crypto.randomUUID(),
-    timestamp: Date.now(),
-    text: 'Item 3'
-  }
-]
+import { Item } from './components/Item'
+import { useItems } from './hooks/useItems'
+import { useSEO } from './hooks/useSEO'
 
 function App () {
-  const [items, setItems] = useState(INITIAL_ITEMS)
+  const { items, addItem, removeItem } = useItems()
+  useSEO(
+    {
+      title: `React Assesment 01 items[ ${items.length} ]`,
+      description: 'React Assesment 01'
+    }
+  )
 
   const onHandleSubmit = (evnt: React.FormEvent<HTMLFormElement>) => {
     evnt.preventDefault()
@@ -36,16 +18,14 @@ function App () {
     const input = elements.namedItem('inputText')
     const isInput = input instanceof HTMLInputElement
     if (isInput) {
-      console.log(input.value)
-      const newItem = { id: crypto.randomUUID(), timestamp: Date.now(), text: input.value }
-      setItems(prev => [...prev, newItem])
+      addItem(input.value)
       input.value = ''
       input.focus()
     }
   }
 
   const onHandleRemoveItem = (id: string) => () => {
-    setItems(prev => prev.filter(item => item.id !== id))
+    removeItem(id)
   }
 
   return (
@@ -54,7 +34,7 @@ function App () {
       <div id='container'>
         <aside>
           <h2>Add and delete list items</h2>
-          <form onSubmit={onHandleSubmit}>
+          <form aria-label='Get user text to add to the list' onSubmit={onHandleSubmit}>
             <label>
               Input
               <input type="text" id="intputText" name="inputText" required placeholder="Write some text"/>
@@ -71,12 +51,11 @@ function App () {
                 <ul>
                   {
                     items.map(item => {
-                      return (
-                        <li key={item.id}>
-                          {item.text}
-                          <button onClick={onHandleRemoveItem(item.id)}>remove</button>
-                        </li>
-                      )
+                      return <Item
+                      {...item}
+                      handleClick={onHandleRemoveItem(item.id)}
+                      key={item.id}
+                      />
                     })
                   }
                 </ul>

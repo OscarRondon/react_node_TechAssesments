@@ -1,3 +1,21 @@
+# Especifications
+
+``````
+Create an app with React wich implement a text fiel and a button to add elements to a list.
+When the button its clicked the text should be add at the botom of the list, aditionaly each time a list element its clicked, this item should be deleted from the list.
+
+ - The functionality its more important then the design
+ - The Code it has to be enterely in TypeScript 
+ 
+``````
+
+## Libraries
+  - npm i eslint-config-standard-with-typescript -D [Linter](https://github.com/standard/eslint-config-standard-with-typescript#readme) [npm](https://www.npmjs.com/package/eslint-config-standard-with-typescript)
+  - npm install vitest happy-dom -D [Testing]
+  - npm install --save-dev @testing-library/react [Testing](https://testing-library.com/docs/react-testing-library/intro/)
+  - npm install --save-dev @testing-library/user-event @testing-library/dom [Testing](https://testing-library.com/docs/ecosystem-user-event/)
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -27,13 +45,3 @@ If you are developing a production application, we recommend updating the config
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
 
 
-# Especifications
-
-``````
-Create an app with React wich implement a text fiel and a button to add elements to a list.
-When the button its clicked the text should be add at the botom of the list, aditionaly each time a list element its clicked, this item should be deleted from the list.
-
- - The functionality its more important then the design
- - The Code it has to be enterely in TypeScript 
- 
-``````
